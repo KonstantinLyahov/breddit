@@ -1,0 +1,56 @@
+body {
+	background-color: #030303;
+	color: #cdcfd1;
+}
+
+header > nav {
+	background-color: #1a1a1b;
+	color: #cdcfd1;
+}
+
+
+.main-theme {
+	background-color: #030303;
+	color: #cdcfd1;
+}
+
+.card {
+	background-color: #1a1a1b;
+}
+
+.form-theme {
+	background-color: #1a1a1b;
+	color: #cdcfd1;
+}
+
+.submit-form-box {
+	background-color: #1a1a1b
+}
+
+#submit-breadcrumb > ol {
+	background-color: #1a1a1b;
+	border-bottom: 1px solid #cdcfd1;
+}
+
+#cke_1_bottom {
+	display:none;
+}
+
+.cke_button_icon {
+	color: #cdcfd1!important;
+}
+
+li.breadcrumb-item>a {
+	padding: 10px;
+	color: #cdcfd1;
+}
+
+li.breadcrumb-item.active>a {
+	padding: 10px;
+	text-decoration: underline;
+}
+
+.form-control {
+	background-color: #1a1a1b;
+	color: #cdcfd1;
+}

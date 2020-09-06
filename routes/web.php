@@ -18,3 +18,13 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware(['auth', 'verified'])->group(function() {
+	Route::get('/submit', 'SubmitController@getSubmitPage')->name('submit.page');
+	Route::post('/upload', 'SubmitController@upload')->name('upload');
+});
+
+Route::get('/file/{filename}', function($filename) {
+	$path = storage_path() . '/' . $filename;
+	echo $path;
+});
