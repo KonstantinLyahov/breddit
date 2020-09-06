@@ -2,22 +2,22 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    @foreach ($posts as $post)
+    <div class="card mb-4">
+        <div class="container">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+            <img class="card-img-top" src="{{ Storage::url($post->files()->first()->path) }}">
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">{{ $post->title }}</h2>
+            <p class="card-text">{{ $post->body }}<p>
+                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            Posted <span>{{ $post->created_at }}</span> by
+            <a href="#">{{ $post->user->name }}</a>
         </div>
     </div>
+    @endforeach
 </div>
-@endsection
+@endsection`
