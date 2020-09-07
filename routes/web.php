@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function() {
 	Route::get('/submit', 'SubmitController@getSubmitPage')->name('submit.page');
-	Route::post('/upload', 'SubmitController@upload')->name('upload');
+	Route::post('/submit', 'SubmitController@postSubmit')->name('submit');
 });
 
 Route::get('/file/{filename}', function($filename) {
