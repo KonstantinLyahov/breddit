@@ -26,7 +26,7 @@ Submit to breddit
 				</div>
 				<div class="submit-form-media d-none">
 					<div class="form-group">
-						<div class="input-images-1" style="padding-top: .5rem;"></div>
+						<input type="file" name="files" multiple accept="image/png,image/gif,image/jpeg,video/mp4,video/quicktime">
 					</div>
 				</div>
 				<button type="submit" class="btn btn-light mt-3 ml-auto">Submit</button>
@@ -38,7 +38,6 @@ Submit to breddit
 @endsection
 
 @section('script')
-<script type="text/javascript" src="{{ asset('js/image-uploader.js') }}"></script>
 <script>
 	CKEDITOR.replace('summary-ckeditor');
 	$('li.breadcrumb-item>a').on('click', function() {
@@ -53,10 +52,6 @@ Submit to breddit
 			$('.post-li').addClass('active');
 			$('.img-li').removeClass('active');
 		}
-	});
-	$('.input-images-1').imageUploader({
-		label: 'Drag and drop images or upload',
-		imagesInputName: 'files'
 	});
 </script>
 @endsection

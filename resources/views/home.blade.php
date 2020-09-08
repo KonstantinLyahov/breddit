@@ -9,7 +9,10 @@
                 <div class="card-header text-muted">
                     Posted <span>{{ time_elapsed_string($post->created_at) }}</span> by <a href="#">{{ $post->user->name }}</a>
                 </div>
-                <img class="card-img-top" src="{{ Storage::url($post->files()->first()->path) }}">
+                @if ($post->files()->first())
+                    
+                <img class="card-img-top" src="{{ asset(Storage::url($post->files()->first()['path'])) }}">
+                @endif
                 <div class="card-body">
                     <h2 class="card-title">{{ $post->title }}</h2>
                     <p class="card-text">{{ $post->body }}<p> <a href="#" class="btn btn-primary">Read More &rarr;</a>
