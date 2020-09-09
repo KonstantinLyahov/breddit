@@ -3,24 +3,17 @@ body {
 	color: #cdcfd1;
 }
 
-header > nav {
+header > nav,
+.main-theme,
+.form-theme,
+.page-item {
 	background-color: #1a1a1b;
 	color: #cdcfd1;
 }
 
-
-.main-theme {
-	background-color: #030303;
-	color: #cdcfd1;
-}
 
 .card {
 	background-color: #1a1a1b;
-}
-
-.form-theme {
-	background-color: #1a1a1b;
-	color: #cdcfd1;
 }
 
 .submit-form-box {

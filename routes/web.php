@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@getNew')->name('home');
+Route::get('/home', 'HomeController@getNew')->name('new');
+Route::get('/new', 'HomeController@getNew')->name('new');
 
 Route::middleware(['auth', 'verified'])->group(function() {
 	Route::get('/submit', 'SubmitController@getSubmitPage')->name('submit.page');

@@ -26,7 +26,7 @@ Submit to breddit
 				</div>
 				<div class="submit-form-media d-none">
 					<div class="form-group">
-						<input type="file" name="files" multiple accept="image/png,image/gif,image/jpeg,video/mp4,video/quicktime">
+						<input type="file" name="files[]" multiple accept="image/png,image/gif,image/jpeg,video/mp4,video/quicktime">
 					</div>
 				</div>
 				<button type="submit" class="btn btn-light mt-3 ml-auto">Submit</button>
