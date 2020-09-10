@@ -1,9 +1,9 @@
-<div class="card mb-4 post">
+<div class="card post" data-postid={{ $post->id }}>
 	<div class="card-header text-muted">
 		Posted <span>{{ time_elapsed_string($post->created_at) }}</span> by <a href="#">{{ $post->user->name }}</a>
 	</div>
 	<div class="d-flex">
-		<div class="d-flex vote-section flex-column pl-2 pt-3 pr-3">
+		<div class="d-flex vote-section flex-column pl-2 pt-3 pr-3 {{ Auth::user()->votes()->where('post_id', $post->id)->first()?Auth::user()->votes()->where('post_id', $post->id)->first()->up?'upvoted':'downvoted':'' }} ">
 			<a class="material-icons upvote-link" href="javascript:void(null)">
 				arrow_circle_up
 			</a>

@@ -80,7 +80,14 @@ li.breadcrumb-item.active>a>span {
 }
 
 
-.post:hover {
+.post-box:hover {
 	cursor: pointer;
 	border: 1px solid white;
+}
+
+.upvoted>a:nth-child(1), .upvoted>div{
+	color: #ff4500;
+}
+.downvoted>a:nth-child(3), .downvoted>div{
+	color: #7193ff;
 }
