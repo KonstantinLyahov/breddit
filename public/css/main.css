@@ -11,6 +11,10 @@ header > nav,
 	color: #cdcfd1;
 }
 
+.comment{
+	border-left: 1px solid #cdcfd1;
+	margin-bottom: 30px;
+}
 
 .card {
 	background-color: #1a1a1b;

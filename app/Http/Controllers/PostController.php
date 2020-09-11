@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Post;
 use App\Vote;
 use Illuminate\Http\Request;
@@ -34,5 +35,14 @@ class PostController extends Controller
         $vote->up = $up;
         $vote->save();
         return response()->json(['action' => 'inserted'], 200);
+    }
+    public function postCreateComment(Request $request)
+    {
+        $comment = new Comment();
+        $comment->user_id = Auth::user()->id;
+        $comment->post_id = $request->post_id;
+        $comment->body = $request->body;
+        $comment->save();
+        return redirect()->back();
     }
 }

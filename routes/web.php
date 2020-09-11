@@ -16,17 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomeController@getNew')->name('home');
-Route::get('/home', 'HomeController@getNew')->name('new');
-Route::get('/new', 'HomeController@getNew')->name('new');
-
-Route::get('/post/{post_id}', 'PostController@getPost')->name('post');
 
 Route::middleware(['auth', 'verified'])->group(function() {
 	Route::get('/submit', 'SubmitController@getSubmitPage')->name('submit.page');
-	Route::post('/submit', 'SubmitController@postSubmit')->name('submit');
+	Route::post('/submit', 'SubmitController@postSubmit')->name('submit');	
+	Route::get('/', 'HomeController@getNew')->name('home');
+	Route::get('/home', 'HomeController@getNew')->name('new');
+	Route::get('/new', 'HomeController@getNew')->name('new');
 
+	Route::get('/post/{post_id}', 'PostController@getPost')->name('post');
 	Route::post('/vote', 'PostController@postVote')->name('vote');
+	Route::post('/comment', 'PostController@postCreateComment')->name('comment.create');
 });
 
 Route::get('/file/{filename}', function($filename) {
