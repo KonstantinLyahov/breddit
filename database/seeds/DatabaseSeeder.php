@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             foreach ($posts as $post) {
                 $vote = new App\Vote();
                 $vote->user_id = $user->id;
-                $vote->post_id = $post->id;
+                $vote->votable_id = $post->id;
+                $vote->votable_type = 'Post';
                 $vote->up = rand(0,1);
                 $vote->save();
             }

@@ -10,8 +10,8 @@ class Vote extends Model
     {
         return $this->belongsTo('App\User');
     }
-    public function post()
+    public function votable()
     {
-        return $this->belongsTo('App\Post');
+        return $this->morphTo();
     }
 }

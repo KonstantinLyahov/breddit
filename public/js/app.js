@@ -54,4 +54,14 @@ $(document).ready(function () {
 	$('.post-box').on('click', function () {
 		location.href = getPostUrl + '/' + $(this).find('.post').data('postid');
 	});
+
+	$('.reply-btn').on('click', function () {
+		console.log('asd');
+		var replyBlock = $(this).parent().find('.reply');
+		if (replyBlock.hasClass('d-none')) {
+			replyBlock.removeClass('d-none');
+		} else {
+			replyBlock.addClass('d-none');
+		}
+	});
 });

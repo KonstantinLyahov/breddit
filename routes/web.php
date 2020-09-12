@@ -27,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 	Route::get('/post/{post_id}', 'PostController@getPost')->name('post');
 	Route::post('/vote', 'PostController@postVote')->name('vote');
 	Route::post('/comment', 'PostController@postCreateComment')->name('comment.create');
+	Route::post('/reply', 'PostController@postReplyComment')->name('comment.reply');
 });
 
 Route::get('/file/{filename}', function($filename) {

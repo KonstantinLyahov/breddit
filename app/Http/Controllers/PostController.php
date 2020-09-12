@@ -31,7 +31,8 @@ class PostController extends Controller
         }
         $vote = new Vote();
         $vote->user_id = $user->id;
-        $vote->post_id = $request->postId;
+        $vote->votable_id = $request->postId;
+        $vote->votable_type = 'Post';
         $vote->up = $up;
         $vote->save();
         return response()->json(['action' => 'inserted'], 200);
@@ -42,6 +43,16 @@ class PostController extends Controller
         $comment->user_id = Auth::user()->id;
         $comment->post_id = $request->post_id;
         $comment->body = $request->body;
+        $comment->save();
+        return redirect()->back();
+    }
+    public function postReplyComment(Request $request)
+    {
+        $comment = new Comment();
+        $comment->user_id = Auth::user()->id;
+        $comment->post_id = $request->postId;
+        $comment->body = $request->body;
+        $comment->parent_id = $request->parentId;
         $comment->save();
         return redirect()->back();
     }

@@ -17,7 +17,7 @@ class CreateVotesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('user_id');
-            $table->integer('post_id');
+            $table->morphs('votable');
             $table->boolean('up');
         });
     }

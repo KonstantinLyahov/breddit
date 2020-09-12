@@ -20,23 +20,8 @@
 	</div>
 	<hr style="background-color: #cdcfd1;">
 	<div class="mt-2 p-5">
-		@foreach ($post->comments as $comment)
-		<div class="card comment">
-			<div class="card-header d-flex justify-content-between">
-				<span>
-					{{ $comment->user->name }}
-				</span>
-				<span>
-					{{ time_elapsed_string($comment->created_at) }}
-				</span>
-				<div></div>
-			</div>
-			<div class="card-body">
-				<div class="card-text">
-					{!! $comment->body !!}
-				</div>
-			</div>
-		</div>
+		@foreach ($post->comments()->where('parent_id', null)->get() as $comment)
+			@include('partials/comment')
 		@endforeach
 	</div>
 </div>
@@ -45,6 +30,7 @@
 @section('script')
 <script>
 	CKEDITOR.replace( 'create-comment-editor' );
+	CKEDITOR.replaceAll('reply-editor' );
 		 var votePostUrl = "{{ URL::to('vote') }}";
 </script>
 @endsection
