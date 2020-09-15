@@ -14,12 +14,6 @@ class HomeController extends Controller
 
     public function getNew()
     {
-        $post = Post::find(1);
-        
-        $vote = new \App\Vote;
-        $vote->up=true;
-        $vote->user_id=Auth::user()->id;
-        $post->votes()->save($vote);
         $posts = Post::orderBy('created_at', 'desc')->simplePaginate($this->postLimit);
         return view('home', ['posts' => $posts]);
     }
