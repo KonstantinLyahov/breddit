@@ -8,15 +8,22 @@ $(document).ready(function () {
 		if ($(this).hasClass('downvote-link')) {
 			up = false;
 		}
-		var postId = $(this).parent().parent().parent().data('postid');
+		var data = {
+			up: up,
+			_token: csrfToken
+		}
+		var url;
+		if ($(this).parent().parent().hasClass('comment')) {
+			data.commentId = $(this).parent().parent().data('commentid');
+			url = voteCommentUrl
+		} else {
+			data.postId = $(this).parent().parent().parent().data('postid');
+			url = votePostUrl;
+		}
 		$.ajax({
 			method: "POST",
-			url: votePostUrl,
-			data: {
-				postId: postId,
-				up: up,
-				_token: csrfToken
-			}
+			url: url,
+			data: data
 		})
 			.done((response) => {
 				var action = response.action;
