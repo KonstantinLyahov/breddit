@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         $up = filter_var($request->up, FILTER_VALIDATE_BOOLEAN);
         $user = Auth::user();
-        $vote = $user->votes()->where('post_id', $request->postId)->first();        
+        $vote = $user->votes()->where('votable_id', $request->postId)->where('votable_type', 'App\Post')->first();        
         if ($vote !== null) {
             if($vote->up == $up) {
                 $vote->delete();
@@ -32,7 +32,7 @@ class PostController extends Controller
         $vote = new Vote();
         $vote->user_id = $user->id;
         $vote->votable_id = $request->postId;
-        $vote->votable_type = 'Post';
+        $vote->votable_type = 'App\Post';
         $vote->up = $up;
         $vote->save();
         return response()->json(['action' => 'inserted'], 200);

@@ -16,7 +16,7 @@ class Post extends Model
     }
     public function votes()
     {
-        return $this->morphMany('App\Vote', 'votable', 'votable_type', 'votable_id');
+        return $this->morphMany('App\Vote', 'votable');
     }
     public function comments()
     {
