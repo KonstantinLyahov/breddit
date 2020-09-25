@@ -24,6 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 	Route::get('/home', 'HomeController@getNew')->name('new');
 	Route::get('/new', 'HomeController@getNew')->name('new');
 
+	Route::get('/profile/{user_id}', 'ProfileController@getProfile')->name('profile');
+
 	Route::get('/post/{post_id}', 'PostController@getPost')->name('post');
 	Route::post('/vote', 'PostController@postVote')->name('vote');
 	Route::post('/comment', 'PostController@postCreateComment')->name('comment.create');
