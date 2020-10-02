@@ -24,7 +24,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
 	Route::get('/home', 'HomeController@getNew')->name('new');
 	Route::get('/new', 'HomeController@getNew')->name('new');
 
-	Route::get('/profile/{user_id}', 'ProfileController@getProfile')->name('profile');
+	Route::prefix('profile/{user_id}')->name('profile.')->group(function() {
+		Route::get('overview', 'ProfileController@getOverview')->name('overview');
+		Route::get('posts', 'ProfileController@getPosts')->name('posts');
+		Route::get('comments', 'ProfileController@getComments')->name('comments');
+	});
 
 	Route::get('/post/{post_id}', 'PostController@getPost')->name('post');
 	Route::post('/vote', 'PostController@postVote')->name('vote');

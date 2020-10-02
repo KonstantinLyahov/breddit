@@ -40,6 +40,10 @@
     </script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        var votePostUrl = "{{ route('vote') }}";
+		var voteCommentUrl = "{{ route('comment.vote') }}"
+    </script>
     @yield('script')
 </body>
 

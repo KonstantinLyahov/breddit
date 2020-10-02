@@ -16,6 +16,16 @@ header > nav,
 	margin-bottom: 30px;
 }
 
+.profile-comment>.card>.card-header:hover{
+	cursor: pointer;
+	border: 1px solid white;
+}
+
+.profile-comment>.card>.card-body:hover{
+	cursor: pointer;
+	border: 1px solid white;
+}
+
 .card {
 	background-color: #1a1a1b;
 }

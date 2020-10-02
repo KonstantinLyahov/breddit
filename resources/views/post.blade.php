@@ -31,7 +31,5 @@
 <script>
 	CKEDITOR.replace( 'create-comment-editor' );
 	CKEDITOR.replaceAll('reply-editor' );
-		 var votePostUrl = "{{ route('vote') }}";
-		 var voteCommentUrl = "{{ route('comment.vote') }}"
 </script>
 @endsection

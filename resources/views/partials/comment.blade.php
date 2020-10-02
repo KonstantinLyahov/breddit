@@ -1,5 +1,6 @@
 
 <div class="comment d-flex" data-commentid={{ $comment->id }}>
+	<a name="comment{{ $comment->id }}"></a>
 	<div class="d-flex vote-section flex-column pl-2 pt-3 pr-3 {{ Auth::user()?Auth::user()->votes()->where('votable_type', 'App\Comment')->where('votable_id', $comment->id)->first()?Auth::user()->votes()->where('votable_type', 'App\Comment')->where('votable_id', $comment->id)->first()->up?'upvoted':'downvoted':'':'' }} ">
 		<a class="material-icons upvote-link" href="javascript:void(null)">
 			arrow_circle_up
