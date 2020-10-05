@@ -28,6 +28,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 		Route::get('overview', 'ProfileController@getOverview')->name('overview');
 		Route::get('posts', 'ProfileController@getPosts')->name('posts');
 		Route::get('comments', 'ProfileController@getComments')->name('comments');
+		Route::get('upvoted', 'ProfileController@getUpvoted')->name('upvoted');
+		Route::get('downvoted', 'ProfileController@getDownvoted')->name('downvoted');
 	});
 
 	Route::get('/post/{post_id}', 'PostController@getPost')->name('post');

@@ -1,25 +1,16 @@
-@extends('layouts/app')
+@extends('profile/layout')
 
-@section('title')
-{{ $user->name }}
-@endsection
 
-@section('content')
+@section('data')
 <div class="container">
-	@include('partials/profile-breadcrumb')
-	<div>
-		@foreach ($comments as $comment)
-		<div class="comment profile-comment">
-			<div class="card">
-			<div class="card-header" onclick="location.href='{{route('post', ['post_id' => $comment->post_id])}}'">Comment on {{ $comment->post_id }}</div>
-			<div class="card-body" onclick="location.href='{{ route('post', ['post_id' => $comment->post_id]) }}' + '#comment{{ $comment->id }}'">
-					<div class="card-text">
-						{!! mb_strimwidth($comment->body, 0, 40, '...') !!}
-					</div>
-				</div>
-			</div>
+	@if (count($comments)==0)
+		<h2>Nothing here..</h2>
+	@else
+		<div>
+			@foreach ($comments as $comment)
+				@include('partials/profile/comment')
+			@endforeach
 		</div>
-		@endforeach
-	</div>
+	@endif
 </div>
 @endsection

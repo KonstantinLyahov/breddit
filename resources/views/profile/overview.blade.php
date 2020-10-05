@@ -1,12 +1,7 @@
-@extends('layouts/app')
+@extends('profile/layout')
 
-@section('title')
-	{{ $user->name }}
-@endsection
-
-@section('content')
+@section('data')
 	<div class="container">
-		@include('partials/profile-breadcrumb')
 		<div>
 			<div>
 			<h4>Name: {{ $user->name }}</h4>

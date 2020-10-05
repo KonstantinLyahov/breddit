@@ -1,12 +1,11 @@
-@extends('layouts/app')
+@extends('profile/layout')
 
-@section('title')
-	{{ $user->name }}
-@endsection
-
-@section('content')
+@section('data')
 	<div class="container">
-		@include('partials/profile-breadcrumb')
-		@include('partials/posts', ['posts' => $posts])
+		@if (count($posts)==0)
+			<h2>Nothing here..</h2>
+		@else
+			@include('partials/posts', ['posts' => $posts])
+		@endif
 	</div>
 @endsection

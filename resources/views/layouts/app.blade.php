@@ -42,7 +42,9 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         var votePostUrl = "{{ route('vote') }}";
-		var voteCommentUrl = "{{ route('comment.vote') }}"
+        var voteCommentUrl = "{{ route('comment.vote') }}";
+        var getPostUrl = "{{ URL::to('post') }}";
+        var votePostUrl = "{{ URL::to('vote') }}";
     </script>
     @yield('script')
 </body>
