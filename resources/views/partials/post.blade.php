@@ -1,4 +1,4 @@
-<div class="card post" data-postid={{ $post->id }}>
+<div class="card post" data-postid={{ $post->id }} data-postcode={{ $post->urlcode->code }}>
 	<div class="card-header text-muted">
 		Posted <span>{{ time_elapsed_string($post->created_at) }}</span> by <a href="#">{{ $post->user->name }}</a>
 	</div>

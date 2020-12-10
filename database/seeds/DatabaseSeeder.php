@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
                 $vote = new App\Vote();
                 $vote->user_id = $user->id;
                 $vote->votable_id = $post->id;
-                $vote->votable_type = 'Post';
+                $vote->votable_type = 'App\Post';
                 $vote->up = rand(0,1);
                 $vote->save();
             }

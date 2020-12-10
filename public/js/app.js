@@ -59,7 +59,7 @@ $(document).ready(function () {
 	});
 
 	$('.post-box').on('click', function () {
-		location.href = getPostUrl + '/' + $(this).find('.post').data('postid');
+		location.href = getPostUrl + '/' + $(this).find('.post').data('postcode');
 	});
 
 	$('.reply-btn').on('click', function () {
