@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Traits\HasUrlCode;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, HasUrlCode;
     /**
      * The attributes that are mass assignable.
      *
@@ -49,5 +50,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    public function urlcode()
+    {
+        return $this->morphOne('App\Urlcode', 'codable');
     }
 }

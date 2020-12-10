@@ -7,13 +7,12 @@ use App\Post;
 use App\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Ui\Presets\React;
 
 class PostController extends Controller
 {
-    public function getPost($post_id)
+    public function getPost($code)
     {
-        $post = Post::find($post_id);
+        $post = Post::findByCode($code);
         return view('post', ['post' => $post]);
     }
     public function postVote(Request $request)

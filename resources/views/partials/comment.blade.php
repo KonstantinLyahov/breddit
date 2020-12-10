@@ -12,9 +12,9 @@
 	</div>
 	<div class="card flex-fill">
 		<div class="card-header d-flex justify-content-between">
-			<span>
+			<a href="{{ route('profile.overview', ['code' => $comment->user->urlcode->code]) }}">
 				{{ $comment->user->name }}
-			</span>
+			</a>
 			<span>
 				{{ time_elapsed_string($comment->created_at) }}
 			</span>
