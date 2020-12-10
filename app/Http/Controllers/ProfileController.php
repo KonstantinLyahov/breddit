@@ -10,39 +10,39 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function getOverview($user_id)
+    public function getOverview($code)
     {
-        $user = User::find($user_id);
+        $user = User::findByCode($code);
         return view('profile/overview', ['user' => $user]);
     }
-    public function getPosts($user_id)
+    public function getPosts($code)
     {
-        $user = User::find($user_id);
-        $posts = Post::where('user_id', $user_id)->orderBy('created_at', 'desc')->simplePaginate(10);
+        $user = User::findByCode($code);
+        $posts = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->simplePaginate(10);
         return view('profile/posts', ['user' => $user, 'posts' => $posts]);
     }
-    public function getComments($user_id)
+    public function getComments($code)
     {
-        $user = User::find($user_id);
+        $user = User::findByCode($code);
         $comments = $user->comments()->orderBy('created_at', 'desc')->simplePaginate(10);
         return view('profile/comments', ['user' => $user, 'comments' => $comments]);
     }
-    public function getUpvoted($user_id)
+    public function getUpvoted($code)
     {
-        $user = User::find($user_id);
-        if(Auth::user()!=$user){
-            return redirect()->route('profile.overview', ['user_id'=>$user_id]);
+        $user = User::findByCode($code);
+        if (Auth::user() != $user) {
+            return redirect()->route('profile.overview', ['code' => $code]);
         }
         $upvoted = $user->votes()->where('up', true)->get();
-        return view('profile/voted', ['user' => $user ,'voted' => $upvoted]);
+        return view('profile/voted', ['user' => $user, 'voted' => $upvoted]);
     }
-    public function getDownvoted($user_id)
+    public function getDownvoted($code)
     {
-        $user = User::find($user_id);
-        if(Auth::user()!=$user){
-            return redirect()->route('profile.overview', ['user_id'=>$user_id]);
+        $user = User::findByCode($code);
+        if (Auth::user() != $user) {
+            return redirect()->route('profile.overview', ['code' => $code]);
         }
         $downvoted = $user->votes()->where('up', false)->get();
-        return view('profile/voted', ['user' => $user ,'voted' => $downvoted]);
+        return view('profile/voted', ['user' => $user, 'voted' => $downvoted]);
     }
 }

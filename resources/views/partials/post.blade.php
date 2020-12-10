@@ -1,6 +1,6 @@
 <div class="card post" data-postid={{ $post->id }} data-postcode={{ $post->urlcode->code }}>
 	<div class="card-header text-muted">
-		Posted <span>{{ time_elapsed_string($post->created_at) }}</span> by <a href="#">{{ $post->user->name }}</a>
+	Posted <span>{{ time_elapsed_string($post->created_at) }}</span> by <a href="{{ route('profile.overview', ['code' => $post->user->urlcode->code]) }}">{{ $post->user->name }}</a>
 	</div>
 	<div class="d-flex">
 		<div class="d-flex vote-section flex-column pl-2 pt-3 pr-3 {{ Auth::user()?Auth::user()->votes()->where('votable_type', 'App\Post')->where('votable_id', $post->id)->first()?Auth::user()->votes()->where('votable_type', 'App\Post')->where('votable_id', $post->id)->first()->up?'upvoted':'downvoted':'':'' }} ">

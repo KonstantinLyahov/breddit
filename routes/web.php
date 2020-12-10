@@ -24,7 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 	Route::get('/home', 'HomeController@getNew')->name('new');
 	Route::get('/new', 'HomeController@getNew')->name('new');
 
-	Route::prefix('profile/{user_id}')->name('profile.')->group(function() {
+	Route::prefix('profile/{code}')->name('profile.')->group(function() {
 		Route::get('overview', 'ProfileController@getOverview')->name('overview');
 		Route::get('posts', 'ProfileController@getPosts')->name('posts');
 		Route::get('comments', 'ProfileController@getComments')->name('comments');
