@@ -56,4 +56,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->morphOne('App\Urlcode', 'codable');
     }
+    public function communities()
+    {
+        return $this->belongsToMany('App\Community', 'community_user', 'user_id', 'community_id');
+    }
+    public function communityRoles()
+    {
+        return $this->belongsToMany('App\CommunityRole', 'community_user', 'user_id', 'community_role_id');
+    }
 }

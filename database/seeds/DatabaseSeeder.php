@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
                 $vote->save();
             }
         }
+        $this->call(CommunityRolesSeeder::class);
     }
 }
