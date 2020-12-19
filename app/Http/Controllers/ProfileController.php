@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -44,5 +45,30 @@ class ProfileController extends Controller
         }
         $downvoted = $user->votes()->where('up', false)->get();
         return view('profile/voted', ['user' => $user, 'voted' => $downvoted]);
+    }
+    public function postToggleFollow(Request $request)
+    {
+        if(Auth::user()->id==$request->user_id) {
+            return response()->json([
+                'message' => "can't follow yourself"
+            ], 422);
+        }
+        if($following = DB::table('followers')->where('followable_type', 'App\User')->where('followable_id', $request->user_id)->where('user_id', Auth::user()->id)->first()) {
+            DB::table('followers')->delete($following->id);
+            return response()->json([
+                'message' => 'unfollowed',
+                'unfollowed' => [
+                    'id' => $following->id
+                ]
+            ], 200);
+        }
+        $followed_id = DB::table('followers')->insertGetId(['followable_type' => 'App\User', 'followable_id' => $request->user_id , 'user_id' => Auth::user()->id]);
+        return response()->json([
+            'message' => 'followed',
+            'unfollowed' => [
+                'id' => $followed_id
+            ]
+        ], 200);
+        
     }
 }

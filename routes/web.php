@@ -17,19 +17,23 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 
-Route::middleware(['auth', 'verified'])->group(function() {
+Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/submit', 'SubmitController@getSubmitPage')->name('submit.page');
-	Route::post('/submit', 'SubmitController@postSubmit')->name('submit');	
+	Route::post('/submit', 'SubmitController@postSubmit')->name('submit');
 	Route::get('/', 'HomeController@getNew')->name('home');
 	Route::get('/home', 'HomeController@getNew')->name('new');
 	Route::get('/new', 'HomeController@getNew')->name('new');
 
-	Route::prefix('profile/{code}')->name('profile.')->group(function() {
+	Route::prefix('profile/{code}')->name('profile.')->group(function () {
 		Route::get('overview', 'ProfileController@getOverview')->name('overview');
 		Route::get('posts', 'ProfileController@getPosts')->name('posts');
 		Route::get('comments', 'ProfileController@getComments')->name('comments');
 		Route::get('upvoted', 'ProfileController@getUpvoted')->name('upvoted');
 		Route::get('downvoted', 'ProfileController@getDownvoted')->name('downvoted');
+	});
+
+	Route::prefix('follow')->name('follow.')->group(function () {
+		Route::post('user', 'ProfileController@postToggleFollow')->name('user');
 	});
 
 	Route::get('/post/{code}', 'PostController@getPost')->name('post');
@@ -39,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 	Route::post('/vote-comment', 'PostController@postVoteComment')->name('comment.vote');
 });
 
-Route::get('/file/{filename}', function($filename) {
+Route::get('/file/{filename}', function ($filename) {
 	$path = storage_path() . '/' . $filename;
 	echo $path;
 });

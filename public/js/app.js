@@ -63,12 +63,37 @@ $(document).ready(function () {
 	});
 
 	$('.reply-btn').on('click', function () {
-		console.log('asd');
 		var replyBlock = $(this).parent().find('.reply');
 		if (replyBlock.hasClass('d-none')) {
 			replyBlock.removeClass('d-none');
 		} else {
 			replyBlock.addClass('d-none');
 		}
+	});
+
+	$('#follow-user-btn').on('click', function () {
+		$.ajax({
+			method: "POST",
+			url: followUserUrl,
+			data: {
+				user_id: this.dataset.userid,
+				_token: csrfToken
+			}
+		})
+			.done((response) => {
+				if (this.innerHTML == 'Follow') {
+					this.innerHTML = 'Following';
+					$(this).removeClass('btn-light');
+					$(this).addClass('btn-dark');
+				} else {
+					this.innerHTML = 'Follow';
+					$(this).removeClass('btn-dark');
+					$(this).addClass('btn-light');
+				}
+
+			})
+			.fail(function (xhr, status, error) {
+				console.log(xhr, status, error);
+			});
 	});
 });
