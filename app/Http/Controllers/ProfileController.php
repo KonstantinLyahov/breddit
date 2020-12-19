@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Post;
+use App\Traits\Followable;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
+    use Followable;
     public function getOverview($code)
     {
         $user = User::findByCode($code);
@@ -53,22 +55,7 @@ class ProfileController extends Controller
                 'message' => "can't follow yourself"
             ], 422);
         }
-        if($following = DB::table('followers')->where('followable_type', 'App\User')->where('followable_id', $request->user_id)->where('user_id', Auth::user()->id)->first()) {
-            DB::table('followers')->delete($following->id);
-            return response()->json([
-                'message' => 'unfollowed',
-                'unfollowed' => [
-                    'id' => $following->id
-                ]
-            ], 200);
-        }
-        $followed_id = DB::table('followers')->insertGetId(['followable_type' => 'App\User', 'followable_id' => $request->user_id , 'user_id' => Auth::user()->id]);
-        return response()->json([
-            'message' => 'followed',
-            'unfollowed' => [
-                'id' => $followed_id
-            ]
-        ], 200);
-        
+        $this->toggleFollow(Auth::user()->id, $request->user_id, 'App\User');
+        return response('OK', 200);        
     }
 }

@@ -13,9 +13,8 @@ class CommunityRolesSeeder extends Seeder
     public function run()
     {
         DB::table('community_roles')->insert([
-            ['role' => 'member'],
             ['role' => 'creator'],
-            ['role' => 'moderator'],
+            ['role' => 'moderator']
         ]);
     }
 }

@@ -6,8 +6,9 @@ body {
 header > nav,
 .main-theme,
 .form-theme,
+.search-list,
 .page-item {
-	background-color: #1a1a1b;
+	background-color: #1a1a1b!important;
 	color: #cdcfd1;
 }
 

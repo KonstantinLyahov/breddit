@@ -24,6 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/home', 'HomeController@getNew')->name('new');
 	Route::get('/new', 'HomeController@getNew')->name('new');
 
+	Route::get('/search', 'HomeController@getSearch')->name('search');
+
 	Route::prefix('profile/{code}')->name('profile.')->group(function () {
 		Route::get('overview', 'ProfileController@getOverview')->name('overview');
 		Route::get('posts', 'ProfileController@getPosts')->name('posts');
@@ -34,6 +36,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::prefix('follow')->name('follow.')->group(function () {
 		Route::post('user', 'ProfileController@postToggleFollow')->name('user');
+	});
+
+	Route::prefix('community')->name('community.')->group(function() {
+		Route::get('create', 'CommunityController@getCreatePage')->name('create');
 	});
 
 	Route::get('/post/{code}', 'PostController@getPost')->name('post');
