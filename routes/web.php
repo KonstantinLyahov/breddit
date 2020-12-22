@@ -38,8 +38,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::post('user', 'ProfileController@postToggleFollow')->name('user');
 	});
 
-	Route::prefix('community')->name('community.')->group(function() {
+	Route::prefix('communities')->name('communities.')->group(function() {
+		Route::get('index', 'CommunityController@getIndexPage')->name('index');
 		Route::get('create', 'CommunityController@getCreatePage')->name('create');
+
+		Route::post('create', 'CommunityController@postCreate')->name('create');
 	});
 
 	Route::get('/post/{code}', 'PostController@getPost')->name('post');

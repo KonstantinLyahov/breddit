@@ -12,6 +12,9 @@
 			<!-- Left Side Of Navbar -->
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
+					<a href="{{ route('communities.index') }}" class="nav-link">Communities</a>
+				</li>
+				<li class="nav-item">
 					<a href="{{ route('submit.page') }}" class="nav-link">Create Post</a>
 				</li>
 			</ul>
