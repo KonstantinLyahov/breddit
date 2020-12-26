@@ -7,6 +7,7 @@ header > nav,
 .main-theme,
 .form-theme,
 .search-list,
+.community-list-item,
 .page-item {
 	background-color: #1a1a1b!important;
 	color: #cdcfd1;
@@ -17,7 +18,7 @@ header > nav,
 	margin-bottom: 30px;
 }
 
-.profile-comment>.card>.card-header:hover{
+.profile-comment>.card>.card-header:hover, .community-list-item:hover{
 	cursor: pointer;
 	border: 1px solid white;
 }
@@ -109,4 +110,11 @@ li.breadcrumb-item.active>a>span {
 }
 .downvoted>a:nth-child(3), .downvoted>div{
 	color: #7193ff;
+}
+
+.community-avatar {
+	vertical-align: middle;
+  	width: 50px;
+  	height: 50px;
+  	border-radius: 30%;
 }

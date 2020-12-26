@@ -13,7 +13,8 @@ class CommunityController extends Controller
 {
     public function getIndexPage()
     {
-        return view('communities/index');
+        $communities = Community::all();
+        return view('communities/index', ['communities' => $communities]);
     }
     public function getCreatePage()
     {
@@ -37,5 +38,10 @@ class CommunityController extends Controller
         $community->save();
         $community->addMember(Auth::user()->id, 'creator');
         return view('communities/created');
+    }
+    public function getCommmunityPage($name)
+    {
+        $community = Community::where('name', $name)->first();
+        dd($community->description);
     }
 }

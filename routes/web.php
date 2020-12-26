@@ -41,6 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::prefix('communities')->name('communities.')->group(function() {
 		Route::get('index', 'CommunityController@getIndexPage')->name('index');
 		Route::get('create', 'CommunityController@getCreatePage')->name('create');
+		Route::get('{name}', 'CommunityController@getCommmunityPage')->name('community');
 
 		Route::post('create', 'CommunityController@postCreate')->name('create');
 	});
