@@ -42,6 +42,12 @@ class CommunityController extends Controller
     public function getCommmunityPage($name)
     {
         $community = Community::where('name', $name)->first();
-        dd($community->description);
+        return view('communities/community', ['community' => $community]);
+    }
+    public function postToggleFollow(Request $request)
+    {
+        $community = Community::find($request->communityId);
+        $community->toggleFollow(Auth::user());
+        return response('OK', 200);   
     }
 }

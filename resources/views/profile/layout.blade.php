@@ -15,7 +15,7 @@
 				<li class="breadcrumb-item {{ Route::currentRouteName()=='profile.downvoted'?'active':'' }}"><a href="{{ route('profile.downvoted', ['code' => $user->urlcode->code]) }}"><span>Downvoted</span></a></li>
 			@else
 			<li class="bradcrumb-item ml-auto">
-				@if (Auth::user()->following()->where('followable_type', 'App\User')->where('followable_id', $user->id)->first())
+				@if ($user->followers->contains(Auth::user()))
 				<button class="btn btn-dark" data-userid="{{ $user->id }}" id="follow-user-btn">Following</button>
 				@else
 					<button class="btn btn-light" data-userid="{{ $user->id }}" id="follow-user-btn">Follow</button>

@@ -96,4 +96,33 @@ $(document).ready(function () {
 				console.log(xhr, status, error);
 			});
 	});
+
+	$('#follow-community-btn').on('click', function () {
+		console.log('here');
+		$.ajax({
+			method: "POST",
+			url: followCommunityUrl,
+			data: {
+				communityId: this.dataset.communityid,
+				_token: csrfToken
+			}
+		})
+			.done((response) => {
+				if (this.innerHTML == 'Follow') {
+					document.getElementById('followers-count').innerHTML = parseInt(document.getElementById('followers-count').innerHTML) + 1;
+					this.innerHTML = 'Following';
+					$(this).removeClass('btn-light');
+					$(this).addClass('btn-dark');
+				} else {
+					document.getElementById('followers-count').innerHTML = parseInt(document.getElementById('followers-count').innerHTML) - 1;
+					this.innerHTML = 'Follow';
+					$(this).removeClass('btn-dark');
+					$(this).addClass('btn-light');
+				}
+
+			})
+			.fail(function (xhr, status, error) {
+				console.log(xhr, status, error);
+			});
+	});
 });

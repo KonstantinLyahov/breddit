@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Followable;
 use App\Traits\HasUrlCode;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasUrlCode;
+    use Notifiable, HasUrlCode, Followable;
     /**
      * The attributes that are mass assignable.
      *
@@ -68,8 +69,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->morphToMany('App\User', 'followable', 'followers');
     }
-    public function following()
+    public function followingUsers()
     {
         return $this->morphedByMany('App\User', 'followable', 'followers');
+    }
+    public function followingCommunities()
+    {
+        return $this->morphedByMany('App\Community', 'followable', 'followers');
+    }
+    public function following()
+    {
+        return $this->followingUsers->union($this->followingCommunities);
     }
 }

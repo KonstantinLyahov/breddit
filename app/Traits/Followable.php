@@ -2,15 +2,17 @@
 
 namespace App\Traits;
 
+use App\User;
 use Illuminate\Support\Facades\DB;
 
-trait Followable {
-	public function toggleFollow($followerId, $followableId, $followableType) {
-		if($following = DB::table('followers')->where('followable_type', $followableType)->where('followable_id', $followableId)->where('user_id', $followerId)->first()) {
-			DB::table('followers')->delete($following->id);
-			return false;
-	  }
-	  DB::table('followers')->insertGetId(['followable_type' => $followableType, 'followable_id' => $followableId , 'user_id' => $followerId]);
-	  return true;
+trait Followable
+{
+	public function toggleFollow($user)
+	{
+		if ($this->followers->contains($user)) {
+			DB::table('followers')->where('followable_type', static::class)->where('user_id', $user->id)->delete();
+		} else {
+			$this->followers()->save($user);
+		}
 	}
 }

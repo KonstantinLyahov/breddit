@@ -2,13 +2,19 @@
 
 namespace App;
 
+use App\Traits\Followable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class Community extends Model
 {
+    use Followable;
     public function users(){
         return $this->belongsToMany('App\User', 'community_user', 'community_id', 'user_id');
+    }
+    public function followers()
+    {
+        return $this->morphToMany('App\User', 'followable', 'followers');
     }
     public function addMember($user_id, $role)
     {

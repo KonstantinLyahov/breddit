@@ -46,6 +46,7 @@
         var getPostUrl = "{{ URL::to('post') }}";
         var votePostUrl = "{{ URL::to('vote') }}";
         var followUserUrl = "{{ route('follow.user') }}";
+        var followCommunityUrl = "{{ route('communities.follow') }}"
     </script>
     @yield('script')
 </body>

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    use Followable;
     public function getOverview($code)
     {
         $user = User::findByCode($code);
@@ -55,7 +54,14 @@ class ProfileController extends Controller
                 'message' => "can't follow yourself"
             ], 422);
         }
-        $this->toggleFollow(Auth::user()->id, $request->user_id, 'App\User');
+        $user = User::find($request->user_id);
+        if(!$user) {
+            return response()->json([
+                'message' => 'User Not Found'
+            ], 404);
+        }
+        $user->toggleFollow(Auth::user());
+        // $this->toggleFollow(Auth::user()->id, $request->user_id, 'App\User');
         return response('OK', 200);        
     }
 }

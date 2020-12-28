@@ -44,6 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('{name}', 'CommunityController@getCommmunityPage')->name('community');
 
 		Route::post('create', 'CommunityController@postCreate')->name('create');
+		Route::post('follow', 'CommunityController@postToggleFollow')->name('follow');
 	});
 
 	Route::get('/post/{code}', 'PostController@getPost')->name('post');
