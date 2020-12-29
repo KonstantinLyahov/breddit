@@ -16,6 +16,10 @@ class Community extends Model
     {
         return $this->morphToMany('App\User', 'followable', 'followers');
     }
+    public function posts()
+    {
+        return $this->belongsToMany('App\Post', 'post_community');
+    }
     public function addMember($user_id, $role)
     {
         $role_id = null;

@@ -28,4 +28,8 @@ class Post extends Model
     {
         return $this->morphOne('App\Urlcode', 'codable');
     }
+    public function communities()
+    {
+        return $this->belongsToMany('App\Community', 'post_community');
+    }
 }

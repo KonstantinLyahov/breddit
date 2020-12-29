@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Community;
 use App\Post;
 use App\PostFile;
 use App\User;
@@ -30,13 +31,17 @@ class SubmitController extends Controller
             foreach ($request->file('files') as $file) {
                 $filenamewithextension = $file->getClientOriginalName();
                 $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-                $extension =$file->getClientOriginalExtension();
+                $extension = $file->getClientOriginalExtension();
                 $filenametostore = md5($filename) . '_' . time() . '.' . $extension;
                 $file->storeAs('public/uploads', $filenametostore);
                 $postFile = new PostFile();
                 $postFile->path = 'uploads/'.$filenametostore;
                 $post->files()->save($postFile);
             }
+        }
+        if($request->place) {
+            $community = Community::find($request->place);
+            $post->communities()->save($community);
         }
         return view('submit/created');
     }

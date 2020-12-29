@@ -20,6 +20,17 @@ Submit to breddit
 				@csrf
 				<div class="submit-form-body">
 					<div class="form-group">
+						<label for="place">Where to post</label>
+						<select name="place" id="place" class="form-control">
+							<option value="0" selected>Only my profile</option>
+							<optgroup label="Communities">
+								@foreach (Auth::user()->followingCommunities as $community)
+									<option value="{{ $community->id }}">{{ $community->name }}</option>
+								@endforeach
+							</optgroup>
+						</select>
+					</div>
+					<div class="form-group">
 						<input type="text" name="title" id="title" class="form-control" placeholder="Title:" name="title">
 					</div>
 					<textarea class="form-control" id="summary-ckeditor" name="body"></textarea>

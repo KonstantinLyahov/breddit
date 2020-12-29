@@ -8,9 +8,10 @@ header > nav,
 .form-theme,
 .search-list,
 .community-list-item,
-.page-item {
+.page-item,
+select, select option, input {
 	background-color: #1a1a1b!important;
-	color: #cdcfd1;
+	color: #cdcfd1!important;
 }
 
 .comment{

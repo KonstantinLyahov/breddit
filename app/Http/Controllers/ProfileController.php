@@ -61,7 +61,6 @@ class ProfileController extends Controller
             ], 404);
         }
         $user->toggleFollow(Auth::user());
-        // $this->toggleFollow(Auth::user()->id, $request->user_id, 'App\User');
         return response('OK', 200);        
     }
 }
