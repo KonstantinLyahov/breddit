@@ -1,13 +1,16 @@
 <div class="card post" data-postid={{ $post->id }} data-postcode={{ $post->urlcode->code }}>
 	<div class="card-header text-muted">
 	Posted <span>{{ time_elapsed_string($post->created_at) }}</span> by <a href="{{ route('profile.overview', ['code' => $post->user->urlcode->code]) }}">{{ $post->user->name }}</a>
+	@if ($post->community->first())
+		to  <a href="{{ route('communities.community', ['name' => $post->community->first()->name]) }}">{{ $post->community->first()->name }}</a>
+	@endif
 	</div>
 	<div class="d-flex">
 		<div class="d-flex vote-section flex-column pl-2 pt-3 pr-3 {{ Auth::user()?Auth::user()->votes()->where('votable_type', 'App\Post')->where('votable_id', $post->id)->first()?Auth::user()->votes()->where('votable_type', 'App\Post')->where('votable_id', $post->id)->first()->up?'upvoted':'downvoted':'':'' }} ">
 			<a class="material-icons upvote-link" href="javascript:void(null)">
 				arrow_circle_up
 			</a>
-			<div class="text-center">{{ $post->votes()->where('up', true)->count() - $post->votes()->where('up', false)->count() }}</div>
+			<div class="text-center">{{ $post->upvotes() }}</div>
 			<a class="material-icons downvote-link" href="javascript:void(null)">
 				arrow_circle_up
 			</a>

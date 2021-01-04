@@ -77,8 +77,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->morphedByMany('App\Community', 'followable', 'followers');
     }
-    public function following()
-    {
-        return $this->followingUsers->union($this->followingCommunities);
-    }
 }

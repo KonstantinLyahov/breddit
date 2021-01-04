@@ -41,7 +41,7 @@ class SubmitController extends Controller
         }
         if($request->place) {
             $community = Community::find($request->place);
-            $post->communities()->save($community);
+            $community->posts()->save($post);
         }
         return view('submit/created');
     }

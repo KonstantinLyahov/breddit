@@ -28,8 +28,12 @@ class Post extends Model
     {
         return $this->morphOne('App\Urlcode', 'codable');
     }
-    public function communities()
+    public function community()
     {
         return $this->belongsToMany('App\Community', 'post_community');
+    }
+    public function upvotes()
+    {
+        return $this->votes()->where('up', true)->count() - $this->votes()->where('up', false)->count();
     }
 }

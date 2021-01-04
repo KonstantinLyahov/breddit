@@ -23,6 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/', 'HomeController@getNew')->name('home');
 	Route::get('/home', 'HomeController@getNew')->name('new');
 	Route::get('/new', 'HomeController@getNew')->name('new');
+	Route::get('/best', 'HomeController@getBest')->name('best');
 
 	Route::get('/search', 'HomeController@getSearch')->name('search');
 
