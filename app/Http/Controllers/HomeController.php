@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Community;
 use App\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
@@ -30,7 +31,8 @@ class HomeController extends Controller
     public function getSearch(Request $request)
     {        
         $users = User::where('name', 'like', '%' . $request->search . '%')->get();
-        return view('search', ['users' => $users]);
+        $communities = Community::where('name', 'like', '%' . $request->search . '%')->get();
+        return view('search', ['users' => $users, 'communities' => $communities, 'search' => $request->search]);
     }
 
     private function getPosts() {
