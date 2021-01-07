@@ -20,10 +20,9 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/submit', 'SubmitController@getSubmitPage')->name('submit.page');
 	Route::post('/submit', 'SubmitController@postSubmit')->name('submit');
-	Route::get('/', 'HomeController@getNew')->name('home');
-	Route::get('/home', 'HomeController@getNew')->name('new');
-	Route::get('/new', 'HomeController@getNew')->name('new');
-	Route::get('/best', 'HomeController@getBest')->name('best');
+	Route::get('/', 'HomeController@getHome')->name('home');
+	Route::get('/home/{sort?}', 'HomeController@getHome')->name('home');
+	Route::get('/all/{sort?}', 'HomeController@getAll')->name('all');
 
 	Route::get('/search', 'HomeController@getSearch')->name('search');
 
